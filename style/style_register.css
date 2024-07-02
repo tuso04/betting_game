@@ -1,0 +1,91 @@
+html{
+    height: 100%;
+    font-family: 'Montserrat'
+}
+
+:root{
+    --primary-light-hsl: 0, 240, 20;
+    --primary-hsl: 0, 128, 0;
+    --primary-dark-hsl: 0, 50, 0;
+    --primary-font-color: 255, 255, 255;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+
+    background-image: linear-gradient(to bottom,rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url("/betting_game/img/soccer-472040_1920.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.login-container{
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(var(--primary-hsl), 0.6);
+    box-shadow: 0 0 10px 0 rgba(var(--primary-hsl), 0.4);
+    padding: 40px 30px;
+    width: 70%;
+    max-width: 800px;
+    border-radius: 20px;
+}
+
+.login-title{
+    margin: 0;
+    color: rgb(var(--primary-font-color));
+    text-align: center;
+    font-size: 36px;
+}
+
+.loginform{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    color: rgb(var(--primary-font-color));
+    gap: 20px;
+    font-size: 20px;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group input{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: lighter;
+    background-color: rgb(var(--primary-light-hsl), 0.3);
+    color: rgb(var(--primary-font-color));
+    border-radius: 7.5px;
+    border: none;
+}
+
+.input-group input:focus{
+    box-shadow: 0 0 0 2px rgb(var(--primary-dark-hsl));
+    border: none;
+    outline: none;
+}
+
+.login-button{
+    padding: 12px 20px;
+    font-size: 28px;
+    color: rgb(var(--primary-font-color));
+    background-color: rgb(var(--primary-dark-hsl), 0.8);
+    border: 1px solid rgb(var(--primary-dark-hsl));
+    border-radius: 7.5px;
+    cursor: pointer;
+}
+
+.login-button:hover,
+.login-button:focus{
+    background-color: rgb(var(--primary-dark-hsl), 0.9);
+}

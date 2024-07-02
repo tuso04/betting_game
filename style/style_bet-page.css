@@ -1,0 +1,129 @@
+.gameday-dropdown select{
+    width: 20%;
+    margin: 0.5% 5%;
+    padding: 0.5% 1%;
+    font-size: clamp(0.8em, 2vw, 1.5em);
+    border: none;
+    border-bottom: 2px grey;
+}
+
+.bet-row{
+    width: 90%;
+    margin: 0.5% 5%;
+    display: grid;
+    grid-template-columns: 22.5% 17.5% 22.5% 5% 17.5% 15%;
+    font-size: clamp(0.4em, 2vw, 1.5em);
+    font-weight: bold;
+    box-shadow: 0 0 2px grey;
+    padding: 1% 0.33%;
+    
+}
+
+.team1, .team2{
+    display: flex;
+    align-items: center;        
+    justify-content: left;
+    margin-left: 5%;
+    max-height: 100%;
+}
+
+.team1-logo, .team2-logo{
+    display: flex;
+    justify-content: space-around; 
+    align-items: left;
+
+}
+
+.team1-name, .team2-name{
+    margin-left: 7.5%;
+}
+
+
+.team1-logo img, .team2-logo img{
+    width: 100%; 
+    height: auto; 
+    max-width: 45vw;
+    height: 4vw; 
+    object-fit: cover;
+}
+
+.result-container{
+    display: flex;
+    align-items: center;        
+    justify-content: center;
+}
+
+.result{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 60%;
+    height: 60%;
+    margin: 3%;
+    padding: 4% 2%; 
+    border-radius: 4%;
+    border-color: black;
+    box-shadow: 0 0 2px black;
+    
+}
+
+.goal-home, .goal-away{
+    width: 40% ;
+    display: flex;
+    align-items: center;        
+    justify-content: center;
+    border: none;
+    font-size: clamp(0.8em, 2vw, 1.5em);
+    text-align: center;
+    
+}
+
+.user-bet-container, .user-points-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-bet-label, .user-points-label{
+    text-align: left;
+    font-size: clamp(0.6em, 1.2vw, 1.125em);
+    
+}
+
+.dots{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-bet{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 60%;
+    padding: 4% 2%;
+    background-color: white;
+    border-radius: 4%;
+    border-color: green;
+    box-shadow: 0 0 2px black;
+    
+}
+
+.user-bet input{
+    width: 40%;
+    border: none;
+    font-size: clamp(0.8em, 2vw, 1.5em);
+    font-weight: bold;
+    font-family: 'Montserrat';
+    text-align: center;
+}
+
+.user-points{
+    display: flex;
+    justify-content: space-between;
+    margin: 3%;
+    height: 60%;
+    font-size: clamp(1em, 2.3vw, 1.5em);
+    font-weight: bolder;
+}
+

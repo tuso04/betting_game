@@ -1,0 +1,122 @@
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+
+    background-color: gainsboro;
+    
+
+    font-family: 'Montserrat';
+}
+
+.head-container{
+    height: 15%;
+    display: flex;
+    background-color: green;
+    align-items: center; 
+}
+
+@media (max-width: 800px) {
+    .head-container{
+        width: 100%; /* Breite über den ganzen Bildschirm */
+        height: 10%; /* Höhe über den ganzen Bildschirm */
+        margin: 0; /* Entfernt jeglichen Margin */
+    }
+}
+
+.head-headline{
+    width: 80%;
+    height: 100%;
+    display: table;
+    margin-left: 5%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.head-headline h2{
+    color: white;
+    font-size: clamp(1em, 4vw, 2em);
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.hamburger-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: absolute;
+    right: 1px;
+    margin-right: 4%;
+    z-index: 10; 
+    cursor: pointer;
+
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input{
+    content: "";
+    width: 50px;
+    height: 6px;
+    background-color: white;
+    border-radius: 9999px;
+    transform-origin: left center;
+
+}
+
+.hamburger-menu input{
+    appearance: none;
+    padding: 0%;
+    margin: 0%;
+    outline: none;
+    pointer-events: none;
+}
+
+.hamburger-menu:has(input:checked)::before{
+    rotate: 45deg;
+    width: calc(30px*1.4142);
+    translate: 0 calc(6px/-2);
+}
+
+.hamburger-menu:has(input:checked)::after{
+    rotate: -45deg;
+    width: calc(30px*1.4142);
+    translate: 0 calc(6px/2);
+}
+
+.hamburger-menu input:checked{
+    opacity: 0;
+    width: 0;
+
+} 
+
+.sidebar{
+    translate: 500%;
+    display: block;
+    margin-top: 35vh;
+    margin-right: 0;
+    background-color: green;
+    color: white;
+    width: 300px;
+}
+
+.sidebar-element{
+    display: flex;
+    flex-direction: column;
+    padding: 10% 15% 10% 20%;
+    color: white;
+    text-decoration: none;
+    background-color: green;
+    border-bottom: 2px solid lightgreen;
+
+}
+
+
+.hamburger-menu:has(input:checked) + .sidebar{
+    translate: 0;
+}

@@ -1,0 +1,16 @@
+.setting-row{
+    width: 90%;
+    margin: 0.5% 5%;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    font-size: clamp(0.4em, 2.5vw, 2em);
+    font-weight: bold;
+    box-shadow: 0 0 2px grey;
+    padding: 1% 0.33%;
+    justify-content: center;
+}
+
+.date-setting {
+    padding: 2%;
+    font-size: clamp(0.4em, 2vw, 1.5em);
+}
