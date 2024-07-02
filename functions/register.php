@@ -7,6 +7,7 @@ if(isset($_POST['register'])){
     $password = md5($_POST['password']);
     $rep_password = md5($_POST['rep-password']);
 
+    //Check if password and repeatet password is equal
     if ($password != $rep_password) {
         echo "Repeatet password is incorret";
     }
