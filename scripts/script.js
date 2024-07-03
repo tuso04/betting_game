@@ -84,6 +84,33 @@ function inputBets(currentUser, currentGameday, selectedGame, bet_home, bet_away
     });
 }
 
+function get_games(currentGameday, currentUser){
+    var n_fixtures = 6;
+
+    //Update fixtures to current gameday
+    updateGameday(currentGameday, selectedDate);
+
+    //Update bets to current gameday
+    updateBets(currentUser, currentGameday);
+
+    setTimeout(()=>{
+        //Update scores to current gameday
+        for (let i = 1; i <= n_fixtures; i++) {
+            // Real scores
+            var score_home = document.getElementById('home-team-'+i+'-score').textContent;
+            var score_away = document.getElementById('away-team-'+i+'-score').textContent;
+
+            // User bet
+            var bet_home = document.getElementById('home-team-'+i+'-bet').value;
+            var bet_away = document.getElementById('away-team-'+i+'-bet').value;
+            updatePoints(i, score_home, score_away, bet_home, bet_away);
+            
+        };
+
+    },100);
+}
+
+
 var currentUser = 1;
 
 
@@ -96,6 +123,9 @@ document.addEventListener("DOMContentLoaded", function() {
     //Get chosen date
     var userDateDiv = document.getElementById('userDate');
     selectedDate = userDateDiv.getAttribute('chosenDate');
+
+    get_games(1, currentUser);
+    
     
 });
 
@@ -111,34 +141,12 @@ $(document).ready(function() {
     const callback_games = function() {
         currentGameday = this.value;
 
-        //Update fixtures to current gameday
-        updateGameday(currentGameday, selectedDate);
-
-        //Update bets to current gameday
-        updateBets(currentUser, currentGameday);
-
-        setTimeout(()=>{
-            //Update scores to current gameday
-            for (let i = 1; i <= n_fixtures; i++) {
-                // Real scores
-                var score_home = document.getElementById('home-team-'+i+'-score').textContent;
-                var score_away = document.getElementById('away-team-'+i+'-score').textContent;
-
-                // User bet
-                var bet_home = document.getElementById('home-team-'+i+'-bet').value;
-                var bet_away = document.getElementById('away-team-'+i+'-bet').value;
-                updatePoints(i, score_home, score_away, bet_home, bet_away);
-                
-            };
-
-        },100);
-        
+        get_games(currentGameday, currentUser);
     };
 
     var gameday_target = document.getElementById('gameday-dropdown');
     gameday_target.addEventListener('change', callback_games);
     
-
 
     //Games from API
 
@@ -169,5 +177,8 @@ $(document).ready(function() {
         input_targets_home[i].addEventListener('input', callback_bets);
         input_targets_away[i].addEventListener('input', callback_bets);
     }
+
+    
+
 });
 
