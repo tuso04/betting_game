@@ -17,7 +17,7 @@
     </div>
     <div class="login-container">
         <h1 class="login-title">Register</h1>
-        <form class="loginform" method="post" action="..\functions\register.php">
+        <form class="loginform" method="post" action="..\functions\register-function.php">
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username">
@@ -40,6 +40,11 @@
 
             <button type="submit" class="login-button" name="register">Register</button>
         </form>
+        <?php
+            if (isset($_GET['error'])) {
+                echo '<p class="error-message">' . htmlspecialchars($_GET['error']) . '</p>';
+            }
+        ?>
     </div>
 
 </body>

@@ -9,19 +9,23 @@ if(isset($_POST['register'])){
 
     //Check if password and repeatet password is equal
     if ($password != $rep_password) {
-        echo "Repeatet password is incorret";
+        $error = '"Repeatet password is incorret"';
+        header('Location: ../sites/register.php?error=' . urlencode($error));
+        exit();
     }
 
     $check_mail = "SELECT * from user WHERE email ='$email'";
     $res = $connection->query($check_mail);
 
     if($res->num_rows>0){
-        echo "Email is already registered";
+        $error = '"Email already registered"';
+        header('Location: ../sites/register.php?error=' . urlencode($error));
+        exit();
     }else{
         $insert_register="INSERT INTO user(username, email, password) VALUES ('$username', '$email', '$password')";
 
         if($connection->query($insert_register)===TRUE){
-            header('location: ..\sites\login.html');
+            header('location: ..\sites\login.php');
         }else{
             echo $connection->error;
         }

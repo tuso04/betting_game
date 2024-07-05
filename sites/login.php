@@ -17,7 +17,7 @@
     </div>
     <div class="login-container">
         <h1 class="login-title">Login</h1>
-        <form action="..\functions\login.php" method="post" class="loginform" id="login_form">
+        <form action="..\functions\login-function.php" method="post" class="loginform" id="login_form">
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email">
@@ -30,6 +30,13 @@
 
             <button type="submit" class="login-button" name="login">Login</button>
         </form>
+        
+        <?php
+            if (isset($_GET['error'])) {
+                echo '<p class="error-message">' . htmlspecialchars($_GET['error']) . '</p>';
+            }
+        ?>
+        
     </div>
 
 </body>

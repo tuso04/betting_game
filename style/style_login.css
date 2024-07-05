@@ -88,3 +88,7 @@ body{
 .login-button:focus{
     background-color: rgb(var(--primary-dark-hsl), 0.9);
 }
+
+.error-message{
+    color: red;
+}

@@ -16,9 +16,11 @@ if(isset($_POST['login'])){
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['selected_date'] = $date;
         header("Location: ..\sites\bet-page.php");
-        exit;
+        exit();
     }else{
-        echo "Invalid login data";
+        $error = 'Invalid login data';
+        header('Location: ../sites/login.php?error=' . urlencode($error));
+        exit();
     }
 
 }
