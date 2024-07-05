@@ -16,9 +16,9 @@
     function fetchDataFromAPI($url) {
         $response = file_get_contents($url);
         if ($response === false) {
-           throw new Exception('Error fetching data from API');
+            throw new Error("Failed API Request");
         }
-        
+
         return $response;
     }
 
@@ -26,7 +26,7 @@
         $response = fetchDataFromAPI($apiUrl);
         
         //Save in session
-        $data = json_decode($response, true);
+        $data = json_decode($response);
         $_SESSION['apiData'] = $data;
 
         header('Content-Type: application/json');
