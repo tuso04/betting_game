@@ -32,7 +32,7 @@
         //Users points
         $points = 0;
         
-        if($bet_home >=0 && $bet_away >=0){
+        if($bet_home >=0 && $bet_away >=0 && $score_home >=0 && $score_away >=0){
             // Check by draw
             if ($score_home == $score_away&& $bet_home == $bet_away) {
                 $points = $points_tendency;

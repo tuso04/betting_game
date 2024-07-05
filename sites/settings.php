@@ -31,5 +31,22 @@
         Date:
         <input type="date" value="2023-07-21" class="date-setting" id="date-setting">
     </div>
+    <div class="setting-row">
+        <button class="logout-button" type="submit" onclick="location.href='index.html'">
+            Logout
+        </button>
+        <div id="result">
+        <?php
+        if (isset($_POST['executePhp'])) {
+            session_start();
+            session_destroy();
+        }
+        ?>
+    </div>
+
+    </div>
+
+
+    
 </body>
 </html>
