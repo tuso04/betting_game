@@ -1,7 +1,7 @@
 <?php
 require "db-connection.php";
 
-$date = "2023-07-21";
+$date = "2023-07-20";
 
 if(isset($_POST['login'])){
     $email = $_POST['email'];
