@@ -3,7 +3,7 @@
     session_start();
 
     //API-Token
-    $api = "MbDuNhk8wxfzoiYr9iaHPX6js60lS8ufAidjB3Ec6tXoIKANCWDWAnG22iyv";
+    $api = "";
 
     //Params
     $season = 21644; //ID from Sportmonks
