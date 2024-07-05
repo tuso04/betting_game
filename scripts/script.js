@@ -67,13 +67,14 @@ function updateBets(currentUser, currentGameday) {
     });
 }
 
-function inputBets(currentUser, currentGameday, selectedGame, bet_home, bet_away) {
+function inputBets(currentUser, currentGameday, selectedDate, selectedGame, bet_home, bet_away) {
     $.ajax({
         url: '../functions/inputBets.php',
         type: 'POST',
         data: {
             currentUser: currentUser,
             currentGameday: currentGameday,
+            selectedDate: selectedDate,
             selectedGame: selectedGame,
             bet_home: bet_home,
             bet_away:bet_away
@@ -103,8 +104,13 @@ function get_games(currentGameday, currentUser){
             // User bet
             var bet_home = document.getElementById('home-team-'+i+'-bet').value;
             var bet_away = document.getElementById('away-team-'+i+'-bet').value;
-            updatePoints(i, score_home, score_away, bet_home, bet_away);
-            
+
+            if(bet_home===""||bet_away===""){
+                bet_home = null;
+                bet_away = null;
+            }
+            inputBets(currentUser, currentGameday, selectedDate, i, bet_home, bet_away);
+            updatePoints(i, score_home, score_away, bet_home, bet_away);       
         };
 
     },100);
@@ -157,7 +163,7 @@ $(document).ready(function() {
             get_games(1, currentUser);
         })
         .catch(error => {
-            console.error('Fehler bei der Fetch-Anfrage:', error)
+            console.error('Error in fetch request:', error)
         });
 
     
@@ -193,7 +199,7 @@ $(document).ready(function() {
         var bet_home = document.getElementById('home-team-'+position_target+'-bet').value;
         var bet_away = document.getElementById('away-team-'+position_target+'-bet').value;
 
-        inputBets(currentUser, currentGameday, position_target, bet_home, bet_away);
+        inputBets(currentUser, currentGameday, selectedDate, position_target, bet_home, bet_away);
         updatePoints(position_target, score_home, score_away, bet_home, bet_away);
     };
 

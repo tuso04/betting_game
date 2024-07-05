@@ -1,11 +1,9 @@
 <?php
 
-// API Abfrage einbauen
-$data = file_get_contents("testdata.json");
+session_start();
 
-//JSON Data
-$json_data = json_decode($data)->data[0];
-
+//Get api data from
+$json_data = $_SESSION['apiData']->data[0];
 
 if (isset($_POST['currentUser'])) {
 
@@ -15,6 +13,17 @@ if (isset($_POST['currentUser'])) {
     $bet_home = $_POST['bet_home'];
     $bet_away = $_POST['bet_away'];
 
+    if (is_null($bet_home)||is_null($bet_away)) {
+        $log = [
+            "currentUserI" => $current_user,
+            "selectedGameday" => $selected_gameday,
+            "selectedGame"=> $selected_game,
+            "bet_home" => $bet_home,
+            "bet_away" => $bet_away,
+        ];
+    
+        echo json_encode($log);
+    }
 
     //Get match id
     $match_id = $json_data->rounds[$selected_gameday]->fixtures[$selected_game]->id;
@@ -25,9 +34,17 @@ if (isset($_POST['currentUser'])) {
     //Get points for the bets
 
     //Get scores
+    $scores = array(NULL, NULL);
+
     include 'calc-functions.php';
     $fixture = $json_data->rounds[$selected_gameday]->fixtures[$selected_game];
-    $scores = get_score($fixture);
+
+    $fixture_date = new DateTime(substr($fixture->starting_at, 0, 10));
+    $chosen_date = new DateTime($_POST['selectedDate']);
+
+    if($fixture_date <= $chosen_date){
+        $scores = get_score($fixture);
+    }
 
     //Claculate points
     $points = calculatePoints($scores[0], $scores[1], $bet_home, $bet_away);
@@ -43,6 +60,16 @@ if (isset($_POST['currentUser'])) {
 
     echo json_encode($log);
 
+    if ($bet_home=="") {
+        $bet_home= NULL;
+
+    } 
+    
+    if ($bet_away=="") {
+        $bet_away= NULL;
+
+    } 
+
     //Put bets in database
     $sql = $connection->prepare("INSERT INTO bets (bet_id, user_id, match_id, bet_home, bet_away, points) VALUES (NULL, ?, ?, ?, ?, ?)
                                  ON DUPLICATE KEY UPDATE bet_home = VALUES(bet_home), bet_away = VALUES(bet_away), points = VALUES(points)");
@@ -54,6 +81,7 @@ if (isset($_POST['currentUser'])) {
     
     if (is_null($bet_home)) {
         $bethome_null = "s";
+
     } 
     if (is_null($bet_away)) {
         $betaway_null = "s";
