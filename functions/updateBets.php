@@ -1,10 +1,6 @@
 <?php
-
-// API Abfrage einbauen
-$data = file_get_contents("../testdata.json");
-
-//JSON Data
-$json_data = json_decode($data)->data[0];
+session_start();
+$json_data = $_SESSION['apiData']->data[0];
 
 if (isset($_POST['currentGameday'])) {
 

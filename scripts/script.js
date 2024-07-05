@@ -110,11 +110,38 @@ function get_games(currentGameday, currentUser){
     },100);
 }
 
+function getAPIData() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: '../functions/api-call.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.error) {
+                    reject(response.error);
+                } else {
+                    resolve(response.data);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                reject(errorThrown);
+            }
+        });
+    });
+}
+
+async function init() {
+    try {
+        const data = await getAPIData();
+        console.log('Data from API:', data);
+    } catch (error) {
+        console.error('Error fetching API data:', error);
+    }
+}
 
 var currentUser = 1;
 
-
-document.addEventListener("DOMContentLoaded", function() {
+$(document).ready(function() {
 
     //Get loged in user
     var userDataDiv = document.getElementById('userData');
@@ -124,17 +151,19 @@ document.addEventListener("DOMContentLoaded", function() {
     var userDateDiv = document.getElementById('userDate');
     selectedDate = userDateDiv.getAttribute('chosenDate');
 
-    get_games(1, currentUser);
+    //Get API Data
+    init()
+        .then(_ =>{
+            get_games(1, currentUser);
+        })
+        .catch(error => {
+            console.error('Fehler bei der Fetch-Anfrage:', error)
+        });
+
     
-    
-});
-
-
-$(document).ready(function() {
-
     //Variables
     var currentGameday = 1;
-    var n_fixtures = 6;
+    const n_fixtures = 6;
 
     //Mutation Listener for changing gameday
     
